@@ -1,0 +1,849 @@
+/* ==========================================================================
+   App.css - Application-specific styles
+   Maandag-inspired design system
+   ========================================================================== */
+
+/* ==========================================================================
+   App Layout
+   ========================================================================== */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-primary);
+}
+
+/* ==========================================================================
+   Header - Clean Maandag-style navigation
+   ========================================================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-100);
+  padding: var(--spacing-4) var(--spacing-6);
+}
+
+.header-inner {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.header-logo:hover {
+  color: var(--color-primary);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+.main {
+  flex: 1;
+}
+
+/* ==========================================================================
+   Hero Section - Large bold headings like Maandag
+   ========================================================================== */
+.hero {
+  padding: var(--spacing-20) var(--spacing-4);
+  text-align: left;
+}
+
+.hero-container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-12);
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-6);
+}
+
+.hero h1 .text-highlight {
+  color: var(--color-primary);
+}
+
+.hero-text {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-8);
+  max-width: 500px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Photo collage style like Maandag */
+.hero-photo-collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--spacing-4);
+  max-width: 500px;
+}
+
+.hero-photo-collage img {
+  border-radius: var(--radius-2xl);
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-photo-collage img:nth-child(1) {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+.hero-photo-collage img:nth-child(2) {
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+}
+
+.hero-photo-collage img:nth-child(3) {
+  grid-column: 2 / 3;
+  grid-row: 2 / 4;
+}
+
+.hero-photo-collage img:nth-child(4) {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .hero-text {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  .hero {
+    padding: var(--spacing-12) var(--spacing-4);
+  }
+}
+
+/* ==========================================================================
+   Feature Sections - Clean white sections with icons
+   ========================================================================== */
+.features-section {
+  padding: var(--spacing-20) var(--spacing-4);
+  background-color: var(--color-bg-secondary);
+}
+
+.features-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-16);
+}
+
+.features-header h2 {
+  margin-bottom: var(--spacing-4);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-8);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.feature-card {
+  background-color: var(--color-white);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-2xl);
+  text-align: center;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--spacing-6);
+  background-color: var(--color-gray-100);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-2xl);
+}
+
+.feature-card h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-3);
+}
+
+.feature-card p {
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Category Pills - Horizontal scrolling like Maandag domains
+   ========================================================================== */
+.category-bar {
+  display: flex;
+  gap: var(--spacing-4);
+  padding: var(--spacing-6) var(--spacing-4);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.category-item:hover {
+  color: var(--color-primary);
+}
+
+.category-item-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-gray-100);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.category-item:hover .category-item-icon {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.category-item-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Dark Section - Teal background like Maandag
+   ========================================================================== */
+.dark-section {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  padding: var(--spacing-20) var(--spacing-4);
+}
+
+.dark-section h2 {
+  color: var(--color-white);
+}
+
+.dark-section p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dark-section .btn-outline {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.dark-section .btn-outline:hover {
+  background-color: var(--color-white);
+  color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   Testimonials / Experience Cards - Like Maandag "ervaringen"
+   ========================================================================== */
+.testimonials-section {
+  padding: var(--spacing-20) var(--spacing-4);
+}
+
+.testimonials-header {
+  max-width: var(--container-xl);
+  margin: 0 auto var(--spacing-12);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.testimonial-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.testimonial-content {
+  padding: var(--spacing-6);
+}
+
+.testimonial-tag {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-3);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-3);
+}
+
+.testimonial-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Call to Action Boxes - Two-column CTA like Maandag
+   ========================================================================== */
+.cta-section {
+  padding: var(--spacing-20) var(--spacing-4);
+  background-color: var(--color-gray-50);
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-6);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.cta-box {
+  position: relative;
+  padding: var(--spacing-10);
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cta-box-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.cta-box-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.cta-box h3 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-4);
+  color: inherit;
+}
+
+.cta-box p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-6);
+}
+
+.cta-box .btn {
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .cta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Footer - Clean minimal footer
+   ========================================================================== */
+.footer {
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-gray-100);
+  padding: var(--spacing-16) var(--spacing-4);
+}
+
+.footer-inner {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: var(--spacing-12);
+  margin-bottom: var(--spacing-12);
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.footer-tagline {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.footer-column h4 {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: var(--spacing-2);
+}
+
+.footer-links a {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-8);
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.footer-copyright {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.footer-social a:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: none;
+    margin-bottom: var(--spacing-8);
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--spacing-4);
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   Form Components - Gift Exchange specific
+   ========================================================================== */
+.form-group {
+  margin-bottom: var(--spacing-6);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--spacing-4);
+  font-size: var(--font-size-base);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-helper {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-2);
+}
+
+.form-error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  margin-top: var(--spacing-2);
+}
+
+/* ==========================================================================
+   Participant List - Gift Exchange specific
+   ========================================================================== */
+.participant-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  background-color: var(--color-white);
+  border: 2px solid var(--color-gray-100);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-fast);
+}
+
+.participant-item:hover {
+  border-color: var(--color-gray-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.participant-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+}
+
+.participant-info {
+  flex: 1;
+}
+
+.participant-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.participant-email {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.participant-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* ==========================================================================
+   Result Card - Gift Exchange assignment reveal
+   ========================================================================== */
+.result-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-3xl);
+  padding: var(--spacing-10);
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.result-card-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--spacing-6);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-4xl);
+}
+
+.result-card h2 {
+  margin-bottom: var(--spacing-2);
+}
+
+.result-card .assigned-name {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-6);
+}
+
+/* ==========================================================================
+   Loading States
+   ========================================================================== */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-gray-200);
+  border-top-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-100) 25%,
+    var(--color-gray-200) 50%,
+    var(--color-gray-100) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================================================
+   Modal / Dialog
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  z-index: var(--z-modal-backdrop);
+}
+
+.modal {
+  background-color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-8);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: var(--z-modal);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-6);
+}
+
+.modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.modal-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: var(--color-gray-100);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background-color: var(--color-gray-200);
+}
+
+.modal-body {
+  margin-bottom: var(--spacing-6);
+}
+
+.modal-footer {
+  display: flex;
+  gap: var(--spacing-4);
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Alert / Notification
+   ========================================================================== */
+.alert {
+  padding: var(--spacing-4) var(--spacing-6);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+}
+
+.alert-success {
+  background-color: rgba(0, 166, 81, 0.1);
+  color: var(--color-primary-dark);
+}
+
+.alert-error {
+  background-color: rgba(211, 47, 47, 0.1);
+  color: var(--color-error);
+}
+
+.alert-warning {
+  background-color: rgba(255, 160, 0, 0.1);
+  color: var(--color-warning);
+}
+
+.alert-info {
+  background-color: rgba(25, 118, 210, 0.1);
+  color: var(--color-info);
+}

@@ -1,0 +1,190 @@
+/* ==========================================================================
+   RulesPanel - Neo-Brutalist Festive Sidebar Style
+   ========================================================================== */
+
+.rules-panel {
+  background: var(--color-white);
+  border: var(--border-default) solid var(--color-ink);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-lg);
+  transform: rotate(-0.5deg);
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Corner decoration */
+.rules-panel::before {
+  content: "📜";
+  position: absolute;
+  top: -15px;
+  left: -10px;
+  font-size: 1.5rem;
+  transform: rotate(-15deg);
+}
+
+.rules-panel::after {
+  content: "✨";
+  position: absolute;
+  bottom: -10px;
+  right: -8px;
+  font-size: 1.2rem;
+  animation: spin-slow 5s linear infinite;
+}
+
+.rules-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  margin: 0 0 var(--spacing-4);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  padding-bottom: var(--spacing-3);
+  border-bottom: var(--border-thin) solid var(--color-ink);
+}
+
+.rules-icon {
+  font-size: 1.7rem;
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.rules-list {
+  margin: 0;
+  padding-left: var(--spacing-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  list-style: none;
+  counter-reset: rules-counter;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.rules-item {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--color-canvas);
+  border: var(--border-thin) solid var(--color-ink);
+  position: relative;
+  counter-increment: rules-counter;
+  transition: all var(--transition-fast);
+}
+
+/* Number badge */
+.rules-item::before {
+  content: counter(rules-counter);
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: var(--border-thin) solid var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-black);
+  box-shadow: 2px 2px 0px 0px var(--color-ink);
+}
+
+.rules-item:hover {
+  background: var(--color-muted-light);
+  transform: translateX(4px);
+}
+
+/* Different colors for each rule number */
+.rules-item:nth-child(1)::before {
+  background: var(--color-primary);
+}
+
+.rules-item:nth-child(2)::before {
+  background: var(--color-secondary);
+}
+
+.rules-item:nth-child(3)::before {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.rules-item:nth-child(4)::before {
+  background: var(--color-tertiary);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .rules-panel {
+    padding: var(--spacing-3);
+  }
+
+  .rules-title {
+    font-size: var(--font-size-base);
+  }
+
+  .rules-item {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-2);
+  }
+
+  .rules-item::before {
+    width: 24px;
+    height: 24px;
+    font-size: var(--font-size-xs);
+    left: -15px;
+  }
+
+  .rules-list {
+    padding-left: var(--spacing-4);
+    gap: var(--spacing-2);
+  }
+}
+
+@media (max-width: 768px) {
+  .rules-panel {
+    transform: rotate(0deg);
+    height: auto;
+  }
+
+  .rules-panel::before,
+  .rules-panel::after {
+    display: none;
+  }
+
+  .rules-title {
+    font-size: var(--font-size-base);
+    gap: var(--spacing-2);
+  }
+
+  .rules-icon {
+    font-size: 1.2rem;
+  }
+
+  .rules-list {
+    gap: var(--spacing-2);
+  }
+
+  .rules-item {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .rules-panel {
+    padding: var(--spacing-3);
+  }
+
+  .rules-title {
+    font-size: var(--font-size-sm);
+  }
+}

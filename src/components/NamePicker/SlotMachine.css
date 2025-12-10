@@ -1,0 +1,252 @@
+/* ==========================================================================
+   SlotMachine - Neo-Brutalist Festive Style (Compact)
+   ========================================================================== */
+
+.slot-machine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slot-window {
+  position: relative;
+  width: 650px;
+  height: 364px;
+  background: var(--color-white);
+  border: var(--border-massive) solid var(--color-ink);
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+
+  /* Candy stripe top decoration */
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.03) 10px,
+    rgba(0, 0, 0, 0.03) 20px
+  );
+}
+
+/* Corner decorations */
+.slot-window::before {
+  content: "🎄";
+  position: absolute;
+  top: -35px;
+  left: -20px;
+  font-size: 3rem;
+  z-index: 10;
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.slot-window::after {
+  content: "🎄";
+  position: absolute;
+  top: -35px;
+  right: -20px;
+  font-size: 3rem;
+  z-index: 10;
+  animation: wiggle 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.slot-track {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.slot-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-tight);
+  transition: all 0.1s ease-out;
+  border-bottom: var(--border-thin) solid rgba(0, 0, 0, 0.1);
+}
+
+.slot-item:last-child {
+  border-bottom: none;
+}
+
+.slot-item-center {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  background: var(--color-accent);
+  text-shadow: 4px 4px 0px var(--color-primary);
+  transform: scale(1.05);
+}
+
+.slot-highlight {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 124px;
+  transform: translateY(-50%);
+  border-top: var(--border-thick) solid var(--color-secondary);
+  border-bottom: var(--border-thick) solid var(--color-secondary);
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(var(--color-accent-rgb), 0.2),
+    transparent
+  );
+}
+
+/* Side lights decoration */
+.slot-highlight::before {
+  content: "🔴";
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  animation: pulse-glow 1s ease-in-out infinite;
+}
+
+.slot-highlight::after {
+  content: "🟢";
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  animation: pulse-glow 1s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.slot-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 6rem;
+  font-weight: var(--font-weight-black);
+  color: var(--color-muted);
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Result display - shows selected name prominently */
+.slot-window-result {
+  background: var(--color-accent);
+}
+
+.slot-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.slot-result-name {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-tight);
+  text-shadow: 4px 4px 0px var(--color-primary);
+  animation: bounce-subtle 0.5s ease-out;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .slot-window {
+    width: 520px;
+    height: 286px;
+  }
+
+  .slot-item {
+    font-size: var(--font-size-3xl);
+  }
+
+  .slot-item-center {
+    font-size: var(--font-size-5xl);
+  }
+
+  .slot-result-name {
+    font-size: var(--font-size-5xl);
+  }
+
+  .slot-highlight {
+    height: 98px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slot-window {
+    width: 320px;
+    height: 180px;
+  }
+
+  .slot-window::before,
+  .slot-window::after {
+    font-size: 1.8rem;
+    top: -22px;
+  }
+
+  .slot-item {
+    font-size: var(--font-size-xl);
+  }
+
+  .slot-item-center {
+    font-size: var(--font-size-3xl);
+  }
+
+  .slot-placeholder {
+    font-size: var(--font-size-6xl);
+  }
+
+  .slot-result-name {
+    font-size: var(--font-size-3xl);
+  }
+
+  .slot-highlight {
+    height: 60px;
+  }
+
+  .slot-highlight::before,
+  .slot-highlight::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .slot-window {
+    width: 280px;
+    height: 160px;
+  }
+
+  .slot-window::before,
+  .slot-window::after {
+    display: none;
+  }
+
+  .slot-item {
+    font-size: var(--font-size-lg);
+  }
+
+  .slot-item-center {
+    font-size: var(--font-size-2xl);
+  }
+
+  .slot-placeholder {
+    font-size: var(--font-size-5xl);
+  }
+
+  .slot-result-name {
+    font-size: var(--font-size-2xl);
+  }
+
+  .slot-highlight {
+    height: 55px;
+  }
+}

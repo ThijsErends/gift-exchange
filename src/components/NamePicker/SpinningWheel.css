@@ -1,0 +1,133 @@
+/* ==========================================================================
+   SpinningWheel - Neo-Brutalist Festive Style
+   ========================================================================== */
+
+.spinning-wheel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-6);
+}
+
+.wheel-container {
+  position: relative;
+  width: 340px;
+  height: 340px;
+}
+
+/* Pointer arrow - Neo-brutalist style */
+.wheel-pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  filter: drop-shadow(3px 3px 0px var(--color-ink));
+}
+
+.pointer-svg {
+  width: 35px;
+  height: 45px;
+}
+
+.pointer-svg polygon {
+  fill: var(--color-secondary);
+  stroke: var(--color-ink);
+  stroke-width: 3;
+}
+
+.wheel-svg {
+  width: 100%;
+  height: 100%;
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.05, 0.99);
+  filter: drop-shadow(8px 8px 0px var(--color-ink));
+}
+
+.wheel-spinning {
+  /* Animation is handled via inline transform */
+}
+
+/* Wheel segment text */
+.wheel-text {
+  font-family: var(--font-family-primary);
+  font-size: 11px;
+  font-weight: var(--font-weight-black);
+  fill: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 1px 0px var(--color-ink);
+  pointer-events: none;
+}
+
+/* Placeholder wheel */
+.wheel-placeholder {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: var(--color-muted-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-muted-dark);
+  border: var(--border-thick) solid var(--color-ink);
+  box-shadow: var(--shadow-xl);
+  animation: bounce-subtle 2s ease-in-out infinite;
+  position: relative;
+}
+
+/* Festive decoration on placeholder */
+.wheel-placeholder::before {
+  content: "🎁";
+  position: absolute;
+  top: -30px;
+  font-size: 2.5rem;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 480px) {
+  .wheel-container {
+    width: 280px;
+    height: 280px;
+  }
+
+  .wheel-placeholder {
+    width: 280px;
+    height: 280px;
+    font-size: var(--font-size-5xl);
+  }
+
+  .wheel-text {
+    font-size: 9px;
+  }
+
+  .pointer-svg {
+    width: 28px;
+    height: 36px;
+  }
+
+  .wheel-placeholder::before {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .wheel-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .wheel-placeholder {
+    width: 250px;
+    height: 250px;
+    font-size: var(--font-size-4xl);
+  }
+
+  .wheel-text {
+    font-size: 8px;
+  }
+}

@@ -1,0 +1,575 @@
+/* ==========================================================================
+   NamePicker - Full-Screen Neo-Brutalist Festive Layout
+   ========================================================================== */
+
+.name-picker {
+  display: grid;
+  grid-template-columns: 280px 1fr 280px;
+  gap: var(--spacing-6);
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-4);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Sidebars - Left (Rules) and Right (Progress)
+   ========================================================================== */
+.picker-sidebar {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  padding-top: var(--spacing-5);
+}
+
+.picker-sidebar-left {
+  padding-right: var(--spacing-2);
+}
+
+.picker-sidebar-right {
+  padding-left: var(--spacing-2);
+}
+
+/* ==========================================================================
+   Center Panel - Main Game Area
+   ========================================================================== */
+.picker-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  position: relative;
+}
+
+/* ==========================================================================
+   Current Player Prompt - Shows who should click
+   ========================================================================== */
+.current-player-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+  background: var(--color-tertiary);
+  padding: var(--spacing-5) var(--spacing-10);
+  border: var(--border-default) solid var(--color-ink);
+  box-shadow: var(--shadow-lg);
+  transform: rotate(-0.5deg);
+  position: relative;
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.current-player-prompt::before {
+  content: "👆";
+  position: absolute;
+  top: -32px;
+  font-size: 2.6rem;
+  animation: float 1.5s ease-in-out infinite;
+}
+
+.prompt-label {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-black);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+}
+
+.prompt-name {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-tight);
+  text-shadow: 4px 4px 0px var(--color-ink);
+}
+
+/* ==========================================================================
+   Selected Name Display - Hero Typography
+   ========================================================================== */
+.selected-name-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  animation: bounce-subtle 0.5s ease-out;
+  background: var(--color-accent);
+  padding: var(--spacing-3) var(--spacing-6);
+  border: var(--border-default) solid var(--color-ink);
+  box-shadow: var(--shadow-lg);
+  transform: rotate(1deg);
+  position: relative;
+}
+
+/* Star decorations */
+.selected-name-display::before {
+  content: "⭐";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  font-size: 1.5rem;
+  animation: spin-slow 5s linear infinite;
+}
+
+.selected-name-display::after {
+  content: "⭐";
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  font-size: 1.5rem;
+  animation: spin-slow 5s linear infinite reverse;
+}
+
+.selected-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+  background: var(--color-white);
+  padding: var(--spacing-1) var(--spacing-2);
+  border: var(--border-thin) solid var(--color-ink);
+}
+
+.selected-name {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-tight);
+  text-shadow: 3px 3px 0px var(--color-primary);
+}
+
+/* ==========================================================================
+   Animation Container
+   ========================================================================== */
+.picker-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Timer Container
+   ========================================================================== */
+.picker-timer {
+  animation: bounce-subtle 0.3s ease-out;
+}
+
+/* ==========================================================================
+   Pick Button - Neo-Brutalist CTA
+   ========================================================================== */
+.picker-action {
+  display: flex;
+  justify-content: center;
+}
+
+.pick-button {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border: var(--border-thick) solid var(--color-ink);
+  padding: var(--spacing-5) 52px;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Gift emoji decoration */
+.pick-button::before {
+  content: "🎁";
+  margin-right: var(--spacing-4);
+  font-size: 1.5rem;
+}
+
+.pick-button::after {
+  content: "🎁";
+  margin-left: var(--spacing-4);
+  font-size: 1.5rem;
+}
+
+/* First pick special styling */
+.pick-button-first {
+  background: var(--color-primary);
+}
+
+.pick-button-first::before {
+  content: "🎲";
+}
+
+.pick-button-first::after {
+  content: "🎲";
+}
+
+.pick-button:hover:not(:disabled) {
+  background: var(--color-secondary-dark);
+  transform: translate(-4px, -4px) rotate(-1deg);
+  box-shadow: var(--shadow-2xl);
+}
+
+.pick-button-first:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.pick-button:active:not(:disabled) {
+  transform: translate(6px, 6px);
+  box-shadow: none;
+}
+
+.pick-button:disabled {
+  background: var(--color-muted);
+  color: var(--color-ink);
+  cursor: not-allowed;
+  box-shadow: var(--shadow-sm);
+  animation: none;
+  opacity: 0.7;
+}
+
+.pick-button:disabled::before,
+.pick-button:disabled::after {
+  content: "✓";
+}
+
+/* ==========================================================================
+   Progress Panel - Right Sidebar
+   ========================================================================== */
+.progress-panel {
+  background: var(--color-white);
+  border: var(--border-default) solid var(--color-ink);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transform: rotate(0.5deg);
+}
+
+.progress-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  margin: 0 0 var(--spacing-4);
+  padding-bottom: var(--spacing-3);
+  border-bottom: var(--border-thin) solid var(--color-ink);
+  text-align: center;
+}
+
+/* Round indicator */
+.round-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+  background: var(--color-secondary);
+  border: var(--border-thin) solid var(--color-ink);
+  transform: rotate(-1deg);
+}
+
+.round-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.round-number {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-white);
+  line-height: 1;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.progress-stats {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.stat-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-3);
+  border: var(--border-thin) solid var(--color-ink);
+}
+
+.stat-remaining {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.stat-picked {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.stat-number {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  margin-top: var(--spacing-1);
+}
+
+.progress-bar-vertical {
+  width: 100%;
+  height: 16px;
+  background: var(--color-canvas);
+  border: var(--border-thin) solid var(--color-ink);
+  margin-bottom: var(--spacing-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill-vertical {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-secondary),
+    var(--color-secondary) 10px,
+    var(--color-secondary-dark) 10px,
+    var(--color-secondary-dark) 20px
+  );
+  transition: width 0.5s ease-out;
+}
+
+.picked-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 100px;
+}
+
+.picked-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  margin: 0 0 var(--spacing-2);
+}
+
+.picked-names {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.picked-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-1) var(--spacing-2);
+  background: var(--color-canvas);
+  border-left: 3px solid var(--color-secondary);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Protected List - Players who protected their gift
+   ========================================================================== */
+.protected-list {
+  margin-top: var(--spacing-4);
+  padding-top: var(--spacing-3);
+  border-top: var(--border-thin) dashed var(--color-tertiary);
+}
+
+.protected-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-black);
+  color: var(--color-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  margin: 0 0 var(--spacing-2);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.protected-title::before {
+  content: "🛡️";
+  font-size: 1.2rem;
+}
+
+.protected-names {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.protected-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  padding: var(--spacing-1) var(--spacing-2);
+  background: var(--color-tertiary);
+  border-left: 3px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.protected-name::after {
+  content: "✓";
+  margin-left: auto;
+  font-size: var(--font-size-sm);
+}
+
+/* ==========================================================================
+   Responsive - Tablet
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .name-picker {
+    grid-template-columns: 220px 1fr 220px;
+    gap: var(--spacing-4);
+    padding: var(--spacing-3);
+  }
+
+  .progress-title {
+    font-size: var(--font-size-base);
+  }
+
+  .stat-number {
+    font-size: var(--font-size-2xl);
+  }
+
+  .prompt-name {
+    font-size: var(--font-size-2xl);
+  }
+
+  .selected-name {
+    font-size: var(--font-size-3xl);
+  }
+
+  .pick-button {
+    padding: var(--spacing-3) var(--spacing-6);
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* ==========================================================================
+   Responsive - Mobile (Stack Layout)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .name-picker {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--spacing-3);
+    overflow-y: auto;
+  }
+
+  .picker-sidebar-left {
+    order: 3;
+    padding: 0;
+  }
+
+  .picker-sidebar-right {
+    order: 2;
+    padding: 0;
+  }
+
+  .picker-center {
+    order: 1;
+  }
+
+  .progress-panel {
+    transform: rotate(0deg);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+    height: auto;
+  }
+
+  .progress-title {
+    width: 100%;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .progress-stats {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .progress-bar-vertical {
+    flex: 1;
+    margin-bottom: 0;
+    height: 40px;
+  }
+
+  .picked-list,
+  .protected-list {
+    display: none;
+  }
+
+  .current-player-prompt,
+  .selected-name-display {
+    transform: rotate(0deg);
+  }
+
+  .selected-name-display::before,
+  .selected-name-display::after {
+    display: none;
+  }
+
+  .pick-button {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ==========================================================================
+   Responsive - Small Mobile
+   ========================================================================== */
+@media (max-width: 480px) {
+  .name-picker {
+    padding: var(--spacing-2);
+    gap: var(--spacing-2);
+  }
+
+  .prompt-name {
+    font-size: var(--font-size-xl);
+  }
+
+  .selected-name {
+    font-size: var(--font-size-2xl);
+  }
+
+  .pick-button::before,
+  .pick-button::after {
+    display: none;
+  }
+
+  .stat-number {
+    font-size: var(--font-size-xl);
+  }
+}

@@ -1,0 +1,212 @@
+/* ==========================================================================
+   TimesUpModal - Neo-Brutalist Festive Style
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal-backdrop);
+  padding: var(--spacing-4);
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: var(--color-white);
+  border: var(--border-massive) solid var(--color-ink);
+  padding: var(--spacing-8);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-2xl);
+  animation: slide-up 0.3s ease-out;
+  position: relative;
+  transform: rotate(-1deg);
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px) rotate(-1deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-1deg);
+  }
+}
+
+/* Corner decorations */
+.modal-content::before {
+  content: "🎄";
+  position: absolute;
+  top: -25px;
+  left: -15px;
+  font-size: 2.5rem;
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+.modal-content::after {
+  content: "🎁";
+  position: absolute;
+  bottom: -25px;
+  right: -15px;
+  font-size: 2.5rem;
+  animation: float 2s ease-in-out infinite;
+}
+
+.modal-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-3);
+  animation: bounce-subtle 1s ease-out;
+}
+
+.modal-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  margin: 0 0 var(--spacing-3);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-tight);
+  text-shadow: 3px 3px 0px var(--color-secondary);
+}
+
+.modal-message {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-6);
+  line-height: var(--line-height-normal);
+}
+
+.modal-button {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: var(--border-default) solid var(--color-ink);
+  padding: var(--spacing-3) var(--spacing-6);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-black);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+/* Arrow icon */
+.modal-button::after {
+  content: " →";
+}
+
+.modal-button:hover {
+  background: var(--color-primary-dark);
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-xl);
+}
+
+.modal-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* Game complete variant */
+.modal-button-complete {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.modal-button-complete::before {
+  content: "🎉 ";
+}
+
+.modal-button-complete::after {
+  content: " 🎉";
+}
+
+.modal-button-complete:hover {
+  background: var(--color-accent-dark);
+}
+
+/* Button container for multiple buttons */
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  align-items: center;
+}
+
+/* Protect button variant */
+.modal-button-protect {
+  background: var(--color-tertiary);
+  color: var(--color-white);
+}
+
+.modal-button-protect::before {
+  content: "🛡️ ";
+}
+
+.modal-button-protect::after {
+  content: "";
+}
+
+.modal-button-protect:hover {
+  background: var(--color-tertiary-dark, #003d33);
+}
+
+/* Hint text below buttons */
+.modal-hint {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-tertiary);
+  margin: var(--spacing-4) 0 0;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: var(--spacing-5);
+    transform: rotate(0deg);
+  }
+
+  .modal-content::before,
+  .modal-content::after {
+    display: none;
+  }
+
+  .modal-icon {
+    font-size: 3rem;
+  }
+
+  .modal-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .modal-message {
+    font-size: var(--font-size-sm);
+  }
+
+  .modal-button {
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-base);
+    width: 100%;
+  }
+}

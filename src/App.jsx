@@ -1,25 +1,21 @@
-import './App.css'
+import { NamePicker } from './components/NamePicker/NamePicker';
+import { SlotMachine } from './components/NamePicker/SlotMachine';
+import { Snow } from './components/Snow/Snow';
+import './App.css';
 
 function App() {
   return (
     <div className="app">
+      <Snow count={60} />
       <header className="header">
-        <h1>Gift Exchange</h1>
-        <p>Welcome to our gift exchange event!</p>
+        <h1>Gift Exchange.</h1>
       </header>
 
       <main className="main">
-        <section className="hero">
-          <h2>Get Ready for the Fun!</h2>
-          <p>Join us for an exciting gift exchange experience.</p>
-        </section>
+        <NamePicker AnimationComponent={SlotMachine} />
       </main>
-
-      <footer className="footer">
-        <p>&copy; 2025 Gift Exchange Event</p>
-      </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

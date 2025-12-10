@@ -1,0 +1,227 @@
+/* ==========================================================================
+   Timer - Neo-Brutalist Festive Style (Compact)
+   ========================================================================== */
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  background: var(--color-white);
+  border: var(--border-default) solid var(--color-ink);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+/* Bell decoration */
+.timer::before {
+  content: "🔔";
+  position: absolute;
+  top: -22px;
+  font-size: 1.7rem;
+  animation: jingle 0.5s ease-in-out infinite;
+}
+
+.timer-label {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-black);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  text-align: center;
+  background: var(--color-accent);
+  padding: var(--spacing-2) var(--spacing-4);
+  border: var(--border-thin) solid var(--color-ink);
+  transform: rotate(-1deg);
+}
+
+.timer-display {
+  display: flex;
+  justify-content: center;
+}
+
+.timer-circle {
+  position: relative;
+  width: 145px;
+  height: 145px;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-bg-circle {
+  stroke: var(--color-canvas);
+  stroke-width: 10;
+}
+
+.timer-progress-circle {
+  stroke-width: 10;
+  stroke-linecap: square;
+  transition: stroke-dashoffset 0.3s ease-out, stroke 0.3s ease-out;
+}
+
+.timer-number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-black);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Timer States - Color Progression
+   ========================================================================== */
+
+/* Wait state (5 second countdown) - Muted green */
+.timer-wait {
+  border-color: var(--color-primary);
+}
+
+.timer-wait .timer-progress-circle {
+  stroke: var(--color-muted);
+}
+
+.timer-wait .timer-number {
+  color: var(--color-tertiary);
+}
+
+.timer-wait .timer-label {
+  background: var(--color-muted-light);
+}
+
+/* Normal state (>10 seconds) - Primary green */
+.timer-normal .timer-progress-circle {
+  stroke: var(--color-primary);
+}
+
+.timer-normal .timer-number {
+  color: var(--color-primary);
+}
+
+/* Warning state (5-10 seconds) - Gold */
+.timer-warning {
+  border-color: var(--color-accent-dark);
+}
+
+.timer-warning .timer-progress-circle {
+  stroke: var(--color-accent);
+}
+
+.timer-warning .timer-number {
+  color: var(--color-accent-dark);
+  animation: bounce-subtle 0.8s ease-in-out infinite;
+}
+
+.timer-warning .timer-label {
+  background: var(--color-accent);
+}
+
+/* Urgent state (3-5 seconds) - Red pulsing */
+.timer-urgent {
+  border-color: var(--color-secondary);
+  animation: pulse-glow 0.5s ease-in-out infinite;
+}
+
+.timer-urgent .timer-progress-circle {
+  stroke: var(--color-secondary);
+}
+
+.timer-urgent .timer-number {
+  color: var(--color-secondary);
+  animation: bounce-subtle 0.5s ease-in-out infinite;
+}
+
+.timer-urgent .timer-label {
+  background: var(--color-secondary-light);
+  color: var(--color-white);
+}
+
+/* Critical state (<=3 seconds) - Red intense pulsing */
+.timer-critical {
+  border-color: var(--color-secondary-dark);
+  animation: pulse-glow 0.3s ease-in-out infinite;
+  transform: scale(1.05);
+}
+
+.timer-critical .timer-progress-circle {
+  stroke: var(--color-secondary-dark);
+}
+
+.timer-critical .timer-number {
+  color: var(--color-secondary-dark);
+  animation: bounce-subtle 0.3s ease-in-out infinite;
+  font-size: var(--font-size-6xl);
+}
+
+.timer-critical .timer-label {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  animation: wiggle 0.2s ease-in-out infinite;
+}
+
+.timer-critical::before {
+  animation: jingle 0.2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+  .timer-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .timer-number {
+    font-size: var(--font-size-4xl);
+  }
+
+  .timer-critical .timer-number {
+    font-size: var(--font-size-5xl);
+  }
+
+  .timer-label {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-1) var(--spacing-3);
+  }
+
+  .timer::before {
+    font-size: 1.4rem;
+    top: -18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .timer-number {
+    font-size: var(--font-size-3xl);
+  }
+
+  .timer-critical .timer-number {
+    font-size: var(--font-size-4xl);
+  }
+
+  .timer-label {
+    font-size: var(--font-size-sm);
+  }
+
+  .timer::before {
+    font-size: 1.2rem;
+    top: -15px;
+  }
+}

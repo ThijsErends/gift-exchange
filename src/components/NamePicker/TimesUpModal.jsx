@@ -34,7 +34,7 @@ export function TimesUpModal({
             <div className="modal-icon">⏰</div>
             <h2 className="modal-title">Tijd is om!</h2>
             <p className="modal-message">
-              Tijd voor de volgende speler om een naam te trekken.
+              Pak je een cadeautje af of pak je een nieuw cadeautje uit?
             </p>
             <div className="modal-buttons">
               <button className="modal-button" onClick={onNextPlayer}>

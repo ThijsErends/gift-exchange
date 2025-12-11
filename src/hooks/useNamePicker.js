@@ -69,6 +69,19 @@ export function useNamePicker(initialNames) {
   }, [initialNames]);
 
   /**
+   * Reset only the game state (keeps the same names pool).
+   * Use this when you want to restart the game without changing participants.
+   */
+  const resetGameState = useCallback(() => {
+    setAvailableNames([...initialNames]);
+    setPickedNames([]);
+    setCurrentName(null);
+    setPendingName(null);
+    setProtectedNames([]);
+    setCurrentRound(1);
+  }, [initialNames]);
+
+  /**
    * Check if current round is complete (all names picked this round).
    */
   const isRoundComplete = availableNames.length === 0 && pendingName === null;
@@ -111,6 +124,7 @@ export function useNamePicker(initialNames) {
     confirmPick,
     protectGift,
     reset,
+    resetGameState,
     startNextRound,
     isRoundComplete,
     isGameComplete,

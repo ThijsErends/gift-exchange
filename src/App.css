@@ -68,6 +68,38 @@
   margin-left: var(--spacing-3);
 }
 
+/* Settings toggle button */
+.settings-toggle {
+  position: absolute;
+  right: var(--spacing-4);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--color-accent);
+  border: var(--border-default) solid var(--color-ink);
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.settings-toggle:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-50%) translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.settings-toggle:active {
+  transform: translateY(-50%) translate(2px, 2px);
+  box-shadow: none;
+}
+
 /* ==========================================================================
    Main Content - Full Height Game Area
    ========================================================================== */
@@ -142,5 +174,12 @@
 @media (max-width: 480px) {
   .header h1 {
     font-size: var(--font-size-lg);
+  }
+
+  .settings-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+    right: var(--spacing-2);
   }
 }

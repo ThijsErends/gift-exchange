@@ -5,7 +5,6 @@ import { useAudio } from '../../hooks/useAudio';
 import { Timer } from './Timer';
 import { TimesUpModal } from './TimesUpModal';
 import { RulesPanel } from '../RulesPanel/RulesPanel';
-import { PARTICIPANTS } from '../../data/participants';
 import './NamePicker.css';
 
 // Audio file path - place your countdown music at this location
@@ -30,8 +29,9 @@ const COUNTDOWN_TIME = 15;
  *
  * @param {object} props
  * @param {React.ComponentType} props.AnimationComponent - Slot machine component
+ * @param {string[]} props.names - Array of participant names
  */
-export function NamePicker({ AnimationComponent }) {
+export function NamePicker({ AnimationComponent, names }) {
   const [phase, setPhase] = useState('idle');
   const [targetName, setTargetName] = useState(null);
 
@@ -51,7 +51,7 @@ export function NamePicker({ AnimationComponent }) {
     canProtect,
     totalNames,
     unprotectedCount,
-  } = useNamePicker(PARTICIPANTS);
+  } = useNamePicker(names);
 
   const waitTimer = useTimer(WAIT_TIME, () => {
     setPhase('countdown');
@@ -165,7 +165,7 @@ export function NamePicker({ AnimationComponent }) {
         {/* Animation component - name stays visible in the slot after spinning */}
         <div className="picker-animation">
           <AnimationComponent
-            names={availableNames.length > 0 ? availableNames : PARTICIPANTS}
+            names={availableNames.length > 0 ? availableNames : names}
             isSpinning={phase === 'spinning'}
             targetName={targetName}
             onSpinComplete={handleSpinComplete}
